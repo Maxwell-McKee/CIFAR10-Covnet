@@ -31,13 +31,13 @@ def main(argv=None):
             if self.step % FLAGS.log_frequency == 0:
                 time_delta = time.time() - self.start_t
                 loss = run_values.results
-                rate = FLAGS.log_frequency * FLAGS.batch_size / duration
-                t_per_batch = float(duration/FLAGS.log_frequency)
+                rate = FLAGS.log_frequency * FLAGS.batch_size / time_delta
+                t_per_batch = float(time_delta/FLAGS.log_frequency)
 
                 format_str = 'step %d, loss = %.2f w/ %.1f ex/sec and %.3f sec/batch'
-                print(format_str % self.step, loss, rate, t_per_batch)
+                print(format_str % (self.step, loss, rate, t_per_batch))
 
-                self.start_t = time()
+                self.start_t = time.time()
 
         def before_run(self, run_context):
             self.step += 1
