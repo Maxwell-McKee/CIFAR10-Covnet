@@ -1,6 +1,6 @@
 import tensorflow as tf
 import time
-from tensorflow.examples.tutorials.image.cifar10 import cifar10
+import cifar10
 
 
 FLAGS = tf.app.flags.FLAGS
