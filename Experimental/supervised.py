@@ -4,7 +4,7 @@ import cifar10
 
 
 FLAGS = tf.app.flags.FLAGS
-tf.app.flags.DEFINE_string('train_dir', '/logs/training',
+tf.app.flags.DEFINE_string('train_dir', './logs/training',
                            """Directory where to write event logs """
                            """and checkpoint.""")
 tf.app.flags.DEFINE_integer('max_steps', 1000000,
@@ -37,7 +37,7 @@ class train_log_session_hook(tf.train.SessionRunHook):
 
 
 
-def main():
+def main(argv=None):
     cifar10.maybe_download_and_extract()
     global_step = tf.train.get_or_create_global_step()
 
@@ -46,7 +46,7 @@ def main():
     
     logits = cifar10.inference(images)
 
-    loss = cifar10.loss(images, labels)
+    loss = cifar10.loss(logits, labels)
 
     train_op = cifar10.train(loss, global_step)
     with tf.train.MonitoredTrainingSession(
