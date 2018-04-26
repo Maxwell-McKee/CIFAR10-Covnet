@@ -10,7 +10,7 @@ import os, re, sys, tarfile
 
 import tensorflow as tf
 import cifar10_input
-
+import urllib
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_integer('batch_size', 1024,

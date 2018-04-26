@@ -20,7 +20,7 @@ import time
 import tensorflow as tf
 
 import modelImages as mi
-
+import urllib
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string('train_dir', '/tmp/cifar10_train',
@@ -43,7 +43,7 @@ def train():
     # Force input pipeline to CPU:0 to avoid operations sometimes ending up on
     # GPU and resulting in a slow down.
     with tf.device('/cpu:0'):
-      images, labels = mi.distorted_inputs()
+      images, labels = mi.distorted_inputs(False)
 
     # Build a Graph that computes the logits predictions from the
     # inference model.
